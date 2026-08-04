@@ -1,0 +1,258 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar with smooth transitions */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d59e0e;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b58900;
+}
+
+/* Smooth scrolling with enhanced easing */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Font loading optimization with transitions */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  line-height: 1.75;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: all 0.3s ease;
+}
+
+/* Font family classes */
+.font-outfit {
+  font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
+
+/* Enhanced focus styles with smooth transitions */
+button:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #d59e0e;
+  outline-offset: 2px;
+  transition: outline 0.2s ease, outline-offset 0.2s ease;
+}
+
+/* Smooth transitions for all interactive elements */
+button,
+a,
+input,
+textarea,
+select {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Button hover effects */
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: translateY(0);
+  transition: transform 0.1s ease;
+}
+
+/* Link hover effects */
+a:hover {
+  transform: translateY(-1px);
+}
+
+/* Card hover effects for elements with shadow */
+.shadow:hover,
+.shadow-lg:hover,
+.shadow-xl:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced loading state for images with fade-in effect */
+img {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
+  transform: scale(1);
+  /* Image quality enhancements */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: high-quality;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Anti-aliasing for better quality */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Service card image enhancements */
+.service-image {
+  filter: contrast(1.15) brightness(1.08) saturate(1.12) unsharp-mask(1px);
+  image-rendering: -webkit-optimize-contrast;
+  transform: scale(1.02);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-image:hover {
+  filter: contrast(1.2) brightness(1.1) saturate(1.15) unsharp-mask(1.2px);
+  transform: scale(1.08);
+}
+
+/* Low-resolution image enhancement for specific images */
+
+/* Only hide images that explicitly have a loading state class */
+img.loading {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+img.loaded {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Hover effects for images */
+img:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+/* Fade-in animation for page elements */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out;
+}
+
+/* Staggered animation delays */
+.animate-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animate-delay-400 {
+  animation-delay: 0.4s;
+}
+
+/* Page transition effect */
+.page-transition {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Smooth gradient transitions */
+.bg-gradient-to-r,
+.bg-gradient-to-br,
+.bg-gradient-to-bl {
+  background-size: 200% 200%;
+  transition: background-position 0.5s ease;
+}
+
+.bg-gradient-to-r:hover,
+.bg-gradient-to-br:hover,
+.bg-gradient-to-bl:hover {
+  background-position: right center;
+}
+
+/* Pulse animation for call-to-action elements */
+@keyframes pulse-soft {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}

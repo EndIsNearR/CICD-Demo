@@ -1,0 +1,9 @@
+Tum pooch sakte ho:
+
+"Hum har subnet mein delegation kyun nahi laga dete?"
+
+Kyun ke delegation subnet ka purpose change kar deti hai. Agar subnet ko Microsoft.Web/serverFarms ke liye delegate kar diya, to woh subnet App Service integration ke liye use hoga aur usmein normal VM deploy nahi ki ja sakti. Isliye delegation sirf un subnets par lagayi jati hai jahan Azure ki specific managed service ko us subnet ka control chahiye.
+
+Simple one-line definition (interview ke liye):
+
+Subnet Delegation Azure ka mechanism hai jisme hum ek subnet ko kisi specific Azure service (jaise App Service, SQL Managed Instance ya NetApp Files) ke liye reserve aur authorize karte hain, taake woh service us subnet ko safely manage aur use kar sake.

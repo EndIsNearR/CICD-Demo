@@ -1,0 +1,23 @@
+# Terraform
+terraform-azure-lab/.terraform/
+terraform-azure-lab/*.tfstate
+terraform-azure-lab/*.tfstate.*
+terraform-azure-lab/crash.log
+terraform-azure-lab/override.tf
+terraform-azure-lab/override.tf.json
+terraform-azure-lab/*terraform.tfvars
+terraform-azure-lab/.terraform.lock.hcl
+terraform-azure-lab/tfplan
+
+# Node / React
+fakhar-abbas-react/node_modules/
+fakhar-abbas-react/dist/
+fakhar-abbas-react/.vite/
+fakhar-abbas-react/package-lock.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Test</title>
+    <style>
+        img { width: 200px; height: 150px; object-fit: cover; margin: 10px; border: 1px solid #ccc; }
+        .error { border: 2px solid red !important; background: #ffe6e6; }
+    </style>
+</head>
+<body>
+    <h1>Testing Images</h1>
+    
+    <h2>Service Images:</h2>
+    <div>
+        <img src="/images/Manpower-supply.jpg" alt="Manpower Supply" onerror="this.classList.add('error'); console.error('Failed: Manpower-supply.jpg')">
+        <img src="/images/contracting.jpg" alt="Contracting" onerror="this.classList.add('error'); console.error('Failed: contracting.jpg')">
+        <img src="/images/Cleaning.jpg" alt="Cleaning" onerror="this.classList.add('error'); console.error('Failed: Cleaning.jpg')">
+    </div>
+    
+    <h2>All Images:</h2>
+    <div>
+        <img src="/images/Cleaning.jpg" alt="Cleaning" onerror="this.classList.add('error')">
+        <img src="/images/contracting.jpg" alt="Contracting" onerror="this.classList.add('error')">
+        <img src="/images/drilling.jpg" alt="Drilling" onerror="this.classList.add('error')">
+        <img src="/images/entrepreneur-startup-start-up-man-39866-39866.jpg" alt="Entrepreneur" onerror="this.classList.add('error')">
+        <img src="/images/FakharAbbas.jpg" alt="Fakhar Abbas" onerror="this.classList.add('error')">
+        <img src="/images/FakharGroup.jpg" alt="Fakhar Group" onerror="this.classList.add('error')">
+        <img src="/images/groupwork.jpg" alt="Group Work" onerror="this.classList.add('error')">
+        <img src="/images/Manpower-supply.jpg" alt="Manpower Supply" onerror="this.classList.add('error')">
+        <img src="/images/Manpower.jpg" alt="Manpower" onerror="this.classList.add('error')">
+    </div>
+</body>
+</html>
