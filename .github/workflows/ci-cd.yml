@@ -77,35 +77,31 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-
-      - name: Build React app for deployment
-        working-directory: "fakhar-abbas-react"
+      - name: Build and push image to ACR
         run: |
-          npm install
-          npm run build
+          az acr build \
+            --registry acraz104lab08 \
+            --image fakhar-abbas-react:${{ github.sha }} \
+            --image fakhar-abbas-react:latest \
+            fakhar-abbas-react
 
-      - name: Prepare deployment artifact
-        run: |
-          mkdir -p deploy-output
-          cp -r "fakhar-abbas-react/dist"/* deploy-output/
-          tar -czf app.tar.gz -C deploy-output .
-
-      - name: Deploy to dedicated app host VM
+      - name: Deploy container on VM
         run: |
           az vm run-command invoke \
             --resource-group rg-compute \
             --name vm-az104lab08-apphost \
             --command-id RunShellScript \
-            --scripts "bash -lc 'sudo mkdir -p /var/www/fakhar-abbas-react && sudo rm -rf /var/www/fakhar-abbas-react/* && sudo apt-get update && sudo apt-get install -y nginx >/dev/null && sudo systemctl enable nginx && sudo systemctl start nginx && sudo tee /etc/nginx/sites-available/default > /dev/null <<\"EOF\"\nserver {\n    listen 80 default_server;\n    listen [::]:80 default_server;\n    root /var/www/fakhar-abbas-react;\n    index index.html;\n    location / {\n        try_files \$uri \$uri/ /index.html;\n    }\n}\nEOF\nsudo systemctl reload nginx'" \
-            --output none
-
-          az vm run-command invoke \
-            --resource-group rg-compute \
-            --name vm-az104lab08-apphost \
-            --command-id RunShellScript \
-            --scripts "bash -lc 'sudo tar -xzf - -C /var/www/fakhar-abbas-react'" \
-            --input-file app.tar.gz
+            --scripts "
+              which docker || (curl -fsSL https://get.docker.com | sudo sh)
+              az login --identity --output none
+              az acr login --name acraz104lab08
+              sudo docker pull acraz104lab08.azurecr.io/fakhar-abbas-react:latest
+              sudo docker stop fakhar-abbas-react || true
+              sudo docker rm fakhar-abbas-react || true
+              sudo docker run -d \
+                --name fakhar-abbas-react \
+                --restart unless-stopped \
+                -p 80:80 \
+                acraz104lab08.azurecr.io/fakhar-abbas-react:latest
+            "
+                      
