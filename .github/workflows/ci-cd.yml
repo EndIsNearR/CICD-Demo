@@ -55,7 +55,7 @@ jobs:
           node-version: 24
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build React app
         run: npm run build
@@ -85,7 +85,7 @@ jobs:
       - name: Build React app for deployment
         working-directory: "fakhar-abbas-react"
         run: |
-          npm ci
+          npm install
           npm run build
 
       - name: Prepare deployment artifact
