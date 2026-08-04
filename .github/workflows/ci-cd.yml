@@ -81,6 +81,7 @@ jobs:
         run: |
           az acr build \
             --registry acraz104lab08 \
+            --resource-group rg-security \
             --image fakhar-abbas-react:${{ github.sha }} \
             --image fakhar-abbas-react:latest \
             fakhar-abbas-react
