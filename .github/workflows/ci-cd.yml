@@ -60,8 +60,8 @@ jobs:
       - name: Build React app
         run: npm run build
 
-  deploy-to-vm:
-    name: Deploy React app to VM
+  deploy-to-aci:
+    name: Deploy React app to Container Instance
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: [terraform-validation, react-build]
     runs-on: ubuntu-latest
@@ -85,24 +85,25 @@ jobs:
             --image fakhar-abbas-react:${{ github.sha }} \
             --image fakhar-abbas-react:latest \
             fakhar-abbas-react
-
-      - name: Deploy container on VM
+          
+      - name: Remove existing container instance (if any)
         run: |
-          az vm run-command invoke \
+          az container delete \
             --resource-group rg-compute \
-            --name vm-az104lab08-apphost \
-            --command-id RunShellScript \
-            --scripts "
-              which docker || (curl -fsSL https://get.docker.com | sudo sh)
-              az login --identity --output none
-              az acr login --name acraz104lab08
-              sudo docker pull acraz104lab08.azurecr.io/fakhar-abbas-react:latest
-              sudo docker stop fakhar-abbas-react || true
-              sudo docker rm fakhar-abbas-react || true
-              sudo docker run -d \
-                --name fakhar-abbas-react \
-                --restart unless-stopped \
-                -p 80:80 \
-                acraz104lab08.azurecr.io/fakhar-abbas-react:latest
-            "
-                      
+            --name fakhar-abbas-react-aci \
+            --yes || true
+
+      - name: Deploy to Azure Container Instance
+        run: |
+          az container create \
+            --resource-group rg-compute \
+            --name fakhar-abbas-react-aci \
+            --image acraz104lab08.azurecr.io/fakhar-abbas-react:${{ github.sha }} \
+            --acr-identity /subscriptions/<sub-id>/resourceGroups/rg-compute/providers/Microsoft.ManagedIdentity/userAssignedIdentities/aci-fakhar-abbas-identity \
+            --assign-identity /subscriptions/<sub-id>/resourceGroups/rg-compute/providers/Microsoft.ManagedIdentity/userAssignedIdentities/aci-fakhar-abbas-identity \
+            --ports 80 \
+            --cpu 1 \
+            --memory 1 \
+            --os-type Linux \
+            --dns-name-label fakhar-abbas-react \
+            --location eastus
