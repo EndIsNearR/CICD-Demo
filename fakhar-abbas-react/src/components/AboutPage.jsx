@@ -90,7 +90,7 @@ const AboutPage = () => {
             <div className={`lg:w-1/2 space-y-6 ${storyInView ? 'animate-slide-in-right animate-delay-200' : 'opacity-0'}`}>
               <div>
                 <h3 className="text-2xl font-medium text-gray-300 mb-6 font-outfit">
-                  Founded in 2011, Fakhar Abbas Group has grown from a small operation to a trusted name in the construction industry. Our commitment to excellence drives us to deliver top-notch services in manpower supply, general contracting, and cleaning.
+                  Founded in 2011sssssssssssssssssssssssssssssss, Fakhar Abbas Group has grown from a small operation to a trusted name in the construction industry. Our commitment to excellence drives us to deliver top-notch services in manpower supply, general contracting, and cleaning.
                 </h3>
                 <p className="text-gray-400 text-lg leading-relaxed mb-8">
                   Mr. Fakhar Abbas Virk established the company in Sharjah, bringing together a team dedicated to quality and safety from day one. Our journey reflects a steadfast focus on the needs of our clients.
