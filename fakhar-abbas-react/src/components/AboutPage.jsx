@@ -60,7 +60,7 @@ const AboutPage = () => {
       >
         <div className="max-w-4xl mx-auto text-center">
           <h1 className={`text-4xl md:text-6xl lg:text-7xl font-medium text-white mb-8 font-outfit ${heroInView ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            Fakhar Abbas 
+            Fakhar Abbas virk
           </h1>
         </div>
       </section>
