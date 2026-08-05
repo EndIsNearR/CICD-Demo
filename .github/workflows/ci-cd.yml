@@ -45,6 +45,20 @@ jobs:
 
       - name: Terraform validate
         run: terraform validate
+
+      - name: Terraform init
+        run: terraform init 
+
+      - name: Terraform plan
+        run: terraform plan -out=tfplan
+        
+        
+      - name: Terraform plan
+        run: terraform plan --auto-approve -out=tfplan
+        
+
+
+
   react-build:
     name: React build
     runs-on: ubuntu-latest
