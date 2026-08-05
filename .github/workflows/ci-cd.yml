@@ -89,14 +89,14 @@ jobs:
       - name: Remove existing container instance (if any)
         run: |
           az container delete \
-            --resource-group rg-compute \
+            --resource-group rg-security \
             --name fakhar-abbas-react-aci \
             --yes || true
 
       - name: Deploy to Azure Container Instance
         run: |
           az container create \
-            --resource-group rg-compute \
+            --resource-group rg-security \
             --name fakhar-abbas-react-aci \
             --image acraz104lab08.azurecr.io/fakhar-abbas-react:${{ github.sha }} \
             --assign-identity /subscriptions/adc9f320-e56e-45b1-845e-c73484745fc8/resourcegroups/rg-az104-lab07/providers/Microsoft.ManagedIdentity/userAssignedIdentities/az104lab07-mi \
